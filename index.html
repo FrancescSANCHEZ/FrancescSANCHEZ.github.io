@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>e-Portfolio — Francesc — M1 MIPI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ===================================================================
+     CHARTE — Modifie facilement ces couleurs et tailles
+     =================================================================== */
+  :root {
+    --uge-blue:      #1B2A78;   /* Bleu Université Gustave Eiffel */
+    --uge-blue-soft: #2E3F94;
+    --uge-blue-pale: #E7EAF5;
+    --paper:         #FAF8F2;   /* Fond beige-blanc */
+    --paper-warm:    #F4F0E4;
+    --card:          #FFFFFF;
+    --ink:           #14162B;
+    --ink-soft:      #4A4D6B;
+    --ink-mute:      #8A8DA8;
+    --line:          #E2DED1;
+    --accent:        #B89968;   /* Or sobre, accent ponctuel */
+    --shadow-sm:     0 1px 2px rgba(20, 22, 43, 0.04);
+    --shadow-md:     0 4px 16px rgba(20, 22, 43, 0.06);
+    --radius:        4px;
+  }
+
+  /* ===================================================================
+     RESET & BASE
+     =================================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Manrope', -apple-system, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--uge-blue);
+    letter-spacing: -0.01em;
+  }
+  a { color: var(--uge-blue); text-decoration: none; }
+  a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+
+  /* ===================================================================
+     LAYOUT — Container
+     =================================================================== */
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 640px) { .container { padding: 0 20px; } }
+
+/* ===================================================================
+   HEADER / NAV
+   =================================================================== */
+.site-header {
+  background: rgba(255,255,255,0.94);
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: saturate(180%) blur(18px);
+  box-shadow: 0 8px 32px rgba(20,22,43,0.08);
+}
+
+.site-header__inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.header-logo img {
+  height: 42px;
+  width: auto;
+  display: block;
+}
+
+.brand {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--uge-blue);
+  letter-spacing: 0.01em;
+}
+
+.brand small {
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink-mute);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 2px;
+}
+
+.bloc-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bloc-link {
+  width: 78px;
+  height: 52px;
+  border-radius: 999px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  line-height: 1.1;
+  box-shadow: 0 4px 12px rgba(20, 22, 43, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.bloc-link span {
+  font-size: 9px;
+  font-weight: 600;
+  opacity: 0.75;
+}
+
+.bloc-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(20, 22, 43, 0.18);
+  text-decoration: none;
+  opacity: 0.95;
+}
+
+.bloc-link--concevoir {
+  background: #F59D22;
+}
+
+.bloc-link--piloter {
+  background: #D92727;
+}
+
+.bloc-link--cooperer {
+  background: #2B9FD8;
+}
+
+.bloc-link--mobiliser {
+  background: #D8C900;
+  color: #14162B;
+}
+
+.bloc-link--agir {
+  background: #74B843;
+}
+
+@media (max-width: 900px) {
+  .site-header__inner {
+    grid-template-columns: auto 1fr;
+  }
+
+  .bloc-nav {
+    grid-column: 1 / -1;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 8px;
+  }
+
+  .bloc-link {
+    width: 68px;
+    height: 48px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 520px) {
+  .header-logo img {
+    height: 36px;
+  }
+
+  .brand {
+    font-size: 15px;
+  }
+
+  .brand small {
+    font-size: 10px;
+  }
+
+  .bloc-nav {
+    gap: 6px;
+  }
+
+  .bloc-link {
+    width: 60px;
+    height: 42px;
+    font-size: 9px;
+  }
+}
+
+  /* ===================================================================
+     HERO
+     =================================================================== */
+  .hero {
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0 110px;
+  border-bottom: 1px solid var(--line);
+
+  background:
+    radial-gradient(circle at top left, rgba(43,159,216,0.18), transparent 30%),
+    radial-gradient(circle at top right, rgba(245,157,34,0.16), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(116,184,67,0.14), transparent 28%),
+    linear-gradient(
+      135deg,
+      #f8f6f0 0%,
+      #fdfcf8 35%,
+      #eef2ff 100%
+    );
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(rgba(27,42,120,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27,42,120,0.03) 1px, transparent 1px);
+
+  background-size: 42px 42px;
+
+  mask-image: radial-gradient(circle at center, black 45%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(27,42,120,0.08),
+    transparent 70%
+  );
+
+  top: -320px;
+  right: -250px;
+
+  pointer-events: none;
+}
+
+  .hero__eyebrow {
+    font-size: 12px; letter-spacing: 0.18em;
+margin-bottom: 10px;
+    text-transform: uppercase; color: var(--accent);
+    font-weight: 600; margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(40px, 6vw, 68px);
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+
+  .hero h1 em {
+    font-style: italic; color: var(--uge-blue-soft);
+  }
+
+.hero-subtitle {
+  max-width: 720px;
+  margin: -4px 0 26px;
+  padding-left: 18px;
+  border-left: 3px solid var(--accent);
+}
+
+.hero-subtitle span {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.2;
+  color: var(--uge-blue);
+  margin-bottom: 8px;
+}
+
+.hero-subtitle small {
+  display: block;
+  font-size: 14px;
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+}
+
+  .hero__lede {
+    font-size: 18px; line-height: 1.6;
+    color: var(--ink-soft); max-width: 640px;
+    margin-bottom: 32px;
+  }
+  .hero__meta {
+    display: flex; gap: 32px; flex-wrap: wrap;
+    padding-top: 24px; border-top: 1px solid var(--line);
+    font-size: 13px; color: var(--ink-mute);
+  }
+  .hero__meta b { color: var(--ink); font-weight: 500; }
+
+  /* ===================================================================
+     INTRO SECTIONS
+     =================================================================== */
+  .intro {
+    padding: 64px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .intro__grid {
+    display: grid; gap: 48px;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 720px) { .intro__grid { grid-template-columns: 1fr; gap: 32px; } }
+  .intro h2 {
+    font-size: 22px; font-weight: 600;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .intro h2::before {
+    content: ''; width: 24px; height: 1px; background: var(--accent);
+  }
+  .intro p { color: var(--ink-soft); font-size: 15px; }
+  .intro p + p { margin-top: 12px; }
+  .intro .key { color: var(--uge-blue); font-weight: 600; }
+
+  /* ===================================================================
+     BLOCS DE COMPÉTENCES
+     =================================================================== */
+  .bloc {
+  display: none;
+  padding: 72px 0;
+  border-bottom: 1px solid var(--line);
+
+  animation: fadeBloc 0.45s ease;
+}
+
+.bloc.active {
+  display: block;
+}
+  .bloc:nth-child(even) { background: var(--paper-warm); }
+
+  .bloc__header {
+    margin-bottom: 48px;
+    display: grid; gap: 16px;
+    grid-template-columns: auto 1fr;
+    align-items: baseline;
+  }
+  .bloc__num {
+    font-family: 'Fraunces', serif;
+    font-size: 80px; font-weight: 300;
+    color: var(--uge-blue); opacity: 0.18;
+    line-height: 0.8;
+    font-variant-numeric: oldstyle-nums;
+  }
+  .bloc__title-wrap { padding-top: 8px; }
+  .bloc__eyebrow {
+    font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent);
+    font-weight: 600; margin-bottom: 8px;
+  }
+  .bloc__title {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 500;
+    max-width: 720px;
+  }
+
+  /* ===================================================================
+     CARTE COMPÉTENCE
+     =================================================================== */
+  .competence {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin-bottom: 24px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  .competence:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--uge-blue-pale);
+  }
+  .competence--placeholder {
+    background: var(--paper-warm);
+    border-style: dashed;
+    border-color: var(--line);
+  }
+  .competence--placeholder:hover { box-shadow: none; }
+
+  .competence__head {
+    padding: 20px 28px;
+    background: var(--uge-blue);
+    color: white;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; flex-wrap: wrap;
+  }
+  .competence--placeholder .competence__head {
+    background: var(--ink-mute);
+  }
+  .competence__name {
+    font-family: 'Fraunces', serif;
+    font-size: 19px; font-weight: 500;
+    color: white;
+  }
+
+  /* Niveau */
+  /* Niveau avec étoiles */
+.niveau-stars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.star {
+  font-size: 18px;
+  color: rgba(255,255,255,0.25);
+}
+
+.star.active {
+  color: #FFD54A;
+  text-shadow: 0 0 8px rgba(255,213,74,0.45);
+}
+
+.niveau-label {
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+}
+
+/* ===================================================================
+   COMPÉTENCES PEU DÉVELOPPÉES
+   =================================================================== */
+
+.competence--inactive {
+  opacity: 0.55;
+  filter: grayscale(0.85);
+}
+
+.competence--inactive .competence__head {
+  background: #8A8DA8;
+}
+
+.competence--inactive .star.active {
+  color: #D4D4D4;
+  text-shadow: none;
+}
+
+.competence--inactive .trace-block {
+  background: rgba(220,220,220,0.35);
+}
+
+.competence--inactive:hover {
+  opacity: 0.82;
+}
+
+  /* Corps de la carte : grille */
+  .competence__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+.competence__body--simple {
+  grid-template-columns: 1fr 1fr;
+}
+
+.competence__body--simple .competence__field {
+  min-height: 150px;
+}
+
+.competence__body--simple .trace-block {
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+@media (max-width: 720px) {
+  .competence__body--simple {
+    grid-template-columns: 1fr;
+  }
+
+  .competence__body--simple .trace-block {
+    border-left: none;
+  }
+}
+
+  @media (max-width: 720px) {
+    .competence__body { grid-template-columns: 1fr; }
+  }
+  .competence__field {
+    padding: 22px 28px;
+    border-top: 1px solid var(--line);
+  }
+  .competence__field:nth-child(odd) { border-right: 1px solid var(--line); }
+  @media (max-width: 720px) {
+    .competence__field:nth-child(odd) { border-right: none; }
+  }
+  .competence__field--full {
+    grid-column: 1 / -1;
+    background: linear-gradient(to bottom, var(--paper), transparent);
+  }
+  .competence__field-label {
+    font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute); font-weight: 600;
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .competence__field-label::before {
+    content: ''; width: 12px; height: 1px;
+    background: var(--accent);
+  }
+  .competence__field p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.55; }
+  .competence__field p + p { margin-top: 8px; }
+  .competence__field strong { color: var(--ink); font-weight: 600; }
+  .placeholder-text {
+    color: var(--ink-mute); font-style: italic; font-size: 14px;
+  }
+
+  /* Trace + commentaire en pleine largeur, mis en valeur */
+  .trace-block {
+    background: var(--uge-blue-pale);
+    padding: 22px 28px;
+    border-top: 2px solid var(--uge-blue);
+  }
+  .trace-block .competence__field-label { color: var(--uge-blue); }
+  .trace-block .competence__field-label::before { background: var(--uge-blue); }
+  .trace-block p { color: var(--ink); }
+  .trace-block .trace-tag {
+    display: inline-block;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--uge-blue); color: white;
+    padding: 2px 8px; border-radius: 2px;
+    margin-right: 8px; font-weight: 600;
+    vertical-align: 1px;
+  }
+  .trace-block .trace-tag--comment {
+    background: var(--accent);
+  }
+
+  /* ===================================================================
+     FOOTER
+     =================================================================== */
+  .site-footer {
+    padding: 48px 0 32px;
+    background: var(--uge-blue);
+    color: rgba(255,255,255,0.8);
+    font-size: 13px;
+  }
+  .site-footer__inner {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px;
+  }
+  .site-footer h3 {
+    color: white; font-size: 16px;
+    font-weight: 500; margin-bottom: 8px;
+  }
+  .site-footer__credit {
+    margin-top: 32px; padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    font-size: 12px; color: rgba(255,255,255,0.5);
+    text-align: center;
+  }
+
+  /* ===================================================================
+     PRINT
+     =================================================================== */
+@keyframes fadeBloc {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+ 
+ @media print {
+    .site-header, .nav { position: static; }
+    .bloc { page-break-inside: avoid; }
+    .competence { page-break-inside: avoid; box-shadow: none; }
+    body { background: white; }
+  }
+
+  /* ===================================================================
+     ANIMATION D'ENTRÉE (légère)
+     =================================================================== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero h1, .hero__lede, .hero__meta {
+    animation: fadeUp 0.7s ease-out backwards;
+  }
+  .hero__lede { animation-delay: 0.1s; }
+  .hero__meta { animation-delay: 0.2s; }
+</style>
+</head>
+
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="container site-header__inner">
+
+    <a href="#" class="header-logo">
+      <img src="logo-uge.png" alt="Université Gustave Eiffel">
+    </a>
+
+    <div class="brand">
+      M1 MIPI - 2025-2026
+      <small>Francesc SANCHEZ FORTUNY</small>
+    </div>
+
+    <nav class="bloc-nav" aria-label="Navigation par blocs de compétences">
+      <a href="#" onclick="showBloc('bloc-1')" class="bloc-link bloc-link--concevoir">
+        <span>01</span>
+        Concevoir
+      </a>
+      <a href="#" onclick="showBloc('bloc-2')" class="bloc-link bloc-link--piloter">
+        <span>02</span>
+        Piloter
+      </a>
+      <a href="#" onclick="showBloc('bloc-3')" class="bloc-link bloc-link--cooperer">
+        <span>03</span>
+        Coopérer
+      </a>
+      <a href="#" onclick="showBloc('bloc-4')" class="bloc-link bloc-link--mobiliser">
+        <span>04</span>
+        Mobiliser
+      </a>
+      <a href="#" onclick="showBloc('bloc-5')" class="bloc-link bloc-link--agir">
+        <span>05</span>
+        Agir
+      </a>
+    </nav>
+
+  </div>
+</header>
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__eyebrow">Université Gustave Eiffel · IFIS</div>
+    <h1>e-Portfolio<br><em>de compétences</em></h1>
+<div class="hero-subtitle">
+  <span>Management & Innovation du Patrimoine Immobilier</span>
+</div>
+    
+    <div class="hero__meta">
+      <div><b>Alternance</b> · AXESS AXTOM - Business Intelligence</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOC 1 ============ -->
+<section class="bloc" id="bloc-1">
+  <div class="container">
+    <header class="bloc__header">
+      <div class="bloc__num">01</div>
+      <div class="bloc__title-wrap">
+        <div class="bloc__eyebrow">Bloc de compétences</div>
+        <h2 class="bloc__title">Concevoir et réaliser des projets et services immobiliers innovants</h2>
+      </div>
+    </header>
+
+    <!-- Compétence 1.1 -->
+    <article class="competence">
+      <div class="competence__head">
+        <h3 class="competence__name">Cadrer un projet immobilier</h3>
+        <div class="niveau-stars">
+  <span class="star active">★</span>
+  <span class="star active">★</span>
+  <span class="star">★</span>
+  <span class="star">★</span>
+  <span class="niveau-label">Opérateur · exécute les consignes</span>
+</div>
+</div>
+      <div class="competence__body competence__body--simple">
+  <div class="competence__field">
+    <div class="competence__field-label">Situation</div>
+    <p>Alternance AXESS AXTOM, service Business Intelligence : cadrage du déploiement d’un outil de comptes-rendus par IA, avec analyse du besoin, échanges prestataires et organisation du déploiement.</p>
+  </div>
+
+  <div class="competence__field trace-block">
+    <div class="competence__field-label">Trace</div>
+    <p><span class="trace-tag">Preuve</span>Cahier des charges Visio, planning de déploiement Alpha → Bêta → Release, supports de suivi projet.</p>
+  </div>
+</div>
+    </article>
+
+    <!-- Compétence 1.2 -->
+    <article class="competence">
+      <div class="competence__head">
+        <h3 class="competence__name">Innover et designer des services immobiliers</h3>
+        <div class="niveau-stars">
+  <span class="star active">★</span>
+  <span class="star active">★</span>
+  <span class="star">★</span>
+  <span class="star">★</span>
+  <span class="niveau-label">Opérateur · exécute les consignes</span>
+</div>
+      </div>
+      <div class="competence__body competence__body--simple">
+  <div class="competence__field">
+    <div class="competence__field-label">Situation</div>
+    <p>Cours de Design de service et BIM, complétés par les missions AXESS autour des outils IA et des solutions numériques destinées aux utilisateurs métiers.</p>
+  </div>
+
+  <div class="competence__field trace-block">
+    <div class="competence__field-label">Trace</div>
+    <p><span class="trace-tag">Preuve</span>Rendu de design de service, livrable BIM, supports de réflexion sur les outils IA et les usages métiers.</p>
+  </div>
+</div>
+    </article>
+
+    <!-- Compétence 1.3 -->
+    <article class="competence">
+      <div class="competence__head">
+<h3 class="competence__name">Organiser la veille et la prospective en immobilier</h3>
+        <div class="niveau-stars">
+  <span class="star active">★</span>
+  <span class="star active">★</span>
+  <span class="star">★</span>
+  <span class="star">★</span>
+  <span class="niveau-label">Opérateur · exécute les consignes</span>
+</div>
+      </div>
+      <div class="competence__body competence__body--simple">
+  <div class="competence__field">
+    <div class="competence__field-label">Situation</div>
+    <p>Cours d’Intelligence Économique, recherches pour le mémoire MIPI et veille régulière sur la BI, l’IA, les outils SaaS, la proptech et les usages numériques dans l’immobilier.</p>
+  </div>
+
+  <div class="competence__field trace-block">
+    <div class="competence__field-label">Trace</div>
+    <p><span class="trace-tag">Preuve</span>Guide d’entretien semi-directif, comparatif d’outils IA, notes de veille, recherches bibliographiques pour le mémoire.</p>
+  </div>
+</div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ BLOC 2 ============ -->
+<section class="bloc" id="bloc-2">
+  <div class="container">
+    <header class="bloc__header">
+      <div class="bloc__num">02</div>
+      <div class="bloc__title-wrap">
+        <div class="bloc__eyebrow">Bloc de compétences</div>
+        <h2 class="bloc__title">Piloter des projets et des services immobiliers</h2>
+      </div>
+    </header>
+
+    <!-- Compétence 2.1 -->
+    <article class="competence competence--inactive">
+      <div class="competence__head">
+        <h3 class="competence__name">Élaborer la stratégie et le schéma directeur immobilier</h3>
+        <div class="niveau-stars">
+  <span class="star active">★</span>
+  <span class="star">★</span>
+  <span class="star">★</span>
+  <span class="star">★</span>
+  <span class="niveau-label">Observateur</span>
+</div>
+      </div>
+      <div class="competence__body competence__body--simple">
+  <div class="competence__field">
+    <div class="competence__field-label">Situation</div>
+    <p>Compétence encore peu développée directement. Elle est abordée indirectement à travers la compréhension du positionnement du service BI et des besoins de pilotage des agences AXESS.</p>
+  </div>
+
+  <div class="competence__field trace-block">
+    <div class="competence__field-label">Trace</div>
+    <p><span class="trace-tag">Preuve</span>Notes de suivi sur le déploiement des outils numériques, échanges internes sur les besoins agences, éléments de cadrage stratégique à approfondir.</p>
+  </div>
+</div>
+    </article>
+
+    <!-- Compétence 2.2 -->
+    <article class="competence">
+      <div class="competence__head">
+        <h3 class="competence__name">Appliquer une méthode et suivre les projets immobiliers</h3>
+        <div class="niveau-stars">
+  <span class="star active">★</span>
+  <span class="star active">★</span>
+  <span class="star active">★</span>
+  <span class="star">★</span>
+  <span class="niveau-label">Autonome</span>
+</div>
+      </div>
+      <div class="competence__body competence__body--simple">
+  <div class="competence__field">
+    <div class="competence__field-label">Situation</div>
+    <p>Alternance AXESS : suivi du déploiement de solutions IA en plusieurs phases, organisation des points de suivi, coordination avec les prestataires et accompagnement des utilisateurs internes.</p>
+  </div>
+
+  <div class="competence__field trace-block">
+    <div class="competence__field-label">Trace</div>
+    <p><span class="trace-tag">Preuve</span>Planning Alpha → Bêta → Release, comptes-rendus de suivi, tableaux de pilotage, supports de réunion et RETEX utilisateurs.</p>
+  </div>
+</div>
+    </article>
+
+    <!-- Compétence 2.3 -->
+    <article class="competence competence--inactive">
+      <div class="competence__head">
+        <h3 class="competence__name">Exploiter les cadres juridiques, règlements et normes</h3>
+        <div class="niveau-stars">
+  <span class="star active">★</span>
+  <span class="star">★</span>
+  <span class="star">★</span>
+  <span class="star">★</span>
+  <span class="niveau-label">Observateur</span>
+</div>
+      </div>
+      <div class="competence__body competence__body--simple">
+  <div class="competence__field">
+    <div class="competence__field-label">Situation</div>
+    <p>Compétence encore principalement observée à travers les cours de droit, risques, assurances, sûreté de l’information et réglementation du bâtiment. Peu d’application terrain directe à ce stade.</p>
+  </div>
+
+  <div class="competence__field trace-block">
+    <div class="competence__field-label">Trace</div>
+    <p><span class="trace-tag">Preuve</span>Supports de cours, exercices juridiques, cas pratiques de réglementation et notes de révision.</p>
+  </div>
+</div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ BLOC 3 ============ -->
+<section class="bloc" id="bloc-3">
+  <div class="container">
+    <header class="bloc__header">
+      <div class="bloc__num">03</div>
+      <div class="bloc__title-wrap">
+        <div class="bloc__eyebrow">Bloc de compétences</div>
+        <h2 class="bloc__title">Construire la coopération entre les parties prenantes</h2>
+      </div>
+    </header>
+
+    <!-- Compétence 3.1 -->
+    <article class="competence">
+      <div class="competence__head">
+        <h3 class="competence__name">Communiquer en interne et en externe</h3>
+       <div class="niveau-stars">
+  <span class="star active">★</span>
+  <span class="star active">★</span>
+  <span class="star active">★</span>
+  <span class="star">★</span>
+  <span class="niveau-label">Autonome</span>
+</div>
+      </div>
+      <div class="competence__body competence__body--simple">
+  <div class="competence__field">
+    <div class="competence__field-label">Situation</div>
+    <p>Déploiement des outils IA chez AXESS : communication auprès des agences, préparation de supports, animation de webinaires, réponses aux utilisateurs et vulgarisation des usages numériques.</p>
+  </div>
+
+  <div class="competence__field trace-block">
+    <div class="competence__field-label">Trace</div>
+    <p><span class="trace-tag">Preuve</span>Slides de webinaire, mails de déploiement, FAQ utilisateurs, supports de présentation et rapport de communication de crise United Airlines.</p>
+  </div>
+</div>
+    </article>
+
+    <!-- Compétence 3.2 -->
+    <article class="competence competence--inactive">
+      <div class="competence__head">
+        <h3 class="competence__name">Manager dans un contexte international et multiculturel</h3>
+        <div class="niveau-stars">
+  <span class="star active">★</span>
+  <span class="star">★</span>
+  <span class="star">★</span>
+  <span class="star">★</span>
+  <span class="niveau-label">Observateur</span>
+</div>
+      </div>
+      <div class="competence__body competence__body--simple">
+  <div class="competence__field">
+    <div class="competence__field-label">Situation</div>
+    <p>Compétence encore peu mobilisée en situation professionnelle. Elle est travaillée principalement à travers les cours d’anglais professionnel, Risks and Strategic Enterprise et la préparation TOEIC.</p>
+  </div>
+
+  <div class="competence__field trace-block">
+    <div class="competence__field-label">Trace</div>
+    <p><span class="trace-tag">Preuve</span>Travaux d’anglais professionnel, supports de cours, exercices TOEIC et livrables en anglais.</p>
+  </div>
+</div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ BLOC 4 ============ -->
+<section class="bloc" id="bloc-4">
+  <div class="container">
+    <header class="bloc__header">
+      <div class="bloc__num">04</div>
+      <div class="bloc__title-wrap">
+        <div class="bloc__eyebrow">Bloc de compétences</div>
+        <h2 class="bloc__title">Mobiliser les expertises managériales et techniques de l'immobilier</h2>
+      </div>
+    </header>
+
+    <!-- Compétence 4.1 -->
+    <article class="competence">
+      <div class="competence__head">
+        <h3 class="competence__name">Analyser les processus métier de l'immobilier</h3>
+        <div class="niveau-stars">
+  <span class="star active">★</span>
+  <span class="star active">★</span>
+  <span class="star active">★</span>
+  <span class="star">★</span>
+  <span class="niveau-label">Autonome</span>
+</div>
+      </div>
+      <div class="competence__body competence__body--simple">
+  <div class="competence__field">
+    <div class="competence__field-label">Situation</div>
+    <p>Alternance AXESS, service Business Intelligence : analyse des besoins métiers, compréhension des processus internes, identification des points de friction et traduction des besoins opérationnels en solutions numériques.</p>
+  </div>
+
+  <div class="competence__field trace-block">
+    <div class="competence__field-label">Trace</div>
+    <p><span class="trace-tag">Preuve</span>Cartographie des processus, cahier des charges Visio, documents de suivi des besoins agences, tests d’extraction IA de données de devis.</p>
+  </div>
+</div>
+    </article>
+
+    <!-- Compétence 4.2 -->
+    <article class="competence competence--inactive">
+      <div class="competence__head">
+        <h3 class="competence__name">Comprendre techniques et pathologies du bâtiment</h3>
+        <div class="niveau-stars">
+  <span class="star active">★</span>
+  <span class="star">★</span>
+  <span class="star">★</span>
+  <span class="star">★</span>
+  <span class="niveau-label">Observateur</span>
+</div>
+      </div>
+      <div class="competence__body competence__body--simple">
+  <div class="competence__field">
+    <div class="competence__field-label">Situation</div>
+    <p>Compétence encore en phase d’observation, travaillée principalement à travers les cours de techniques des immeubles, réglementation du bâtiment et diagnostic.</p>
+  </div>
+
+  <div class="competence__field trace-block">
+    <div class="competence__field-label">Trace</div>
+    <p><span class="trace-tag">Preuve</span>Supports de cours, exercices de diagnostic, notes de révision et cas pratiques liés aux techniques du bâtiment.</p>
+  </div>
+</div>
+    </article>
+
+    <!-- Compétence 4.3 -->
+    <article class="competence">
+      <div class="competence__head">
+        <h3 class="competence__name">Répondre aux besoins utilisateurs — Facility Management</h3>
+        <div class="niveau-stars">
+  <span class="star active">★</span>
+  <span class="star active">★</span>
+  <span class="star">★</span>
+  <span class="star">★</span>
+  <span class="niveau-label">Opérateur · exécute les consignes</span>
+</div>
+      </div>
+      <div class="competence__body competence__body--simple">
+  <div class="competence__field">
+    <div class="competence__field-label">Situation</div>
+    <p>Déploiement d’outils numériques auprès des agences AXESS : compréhension des besoins utilisateurs, adaptation des supports, accompagnement des usages et traitement des retours terrain.</p>
+  </div>
+
+  <div class="competence__field trace-block">
+    <div class="competence__field-label">Trace</div>
+    <p><span class="trace-tag">Preuve</span>Retours utilisateurs, supports de formation, webinaires, permanences, tableaux de suivi des agences et comptes créés.</p>
+  </div>
+</div>
+    </article>
+
+    <!-- Compétence 4.4 -->
+    <article class="competence competence--inactive">
+      <div class="competence__head">
+        <h3 class="competence__name">Valoriser et arbitrer les projets immobiliers (PM/AM)</h3>
+        <div class="niveau-stars">
+  <span class="star active">★</span>
+  <span class="star">★</span>
+  <span class="star">★</span>
+  <span class="star">★</span>
+  <span class="niveau-label">Observateur</span>
+</div>
+      </div>
+      <div class="competence__body competence__body--simple">
+  <div class="competence__field">
+    <div class="competence__field-label">Situation</div>
+    <p>Compétence encore peu appliquée en entreprise. Elle est abordée à travers les cours d’affectation des charges locatives, finances appliquées à l’immobilier et écosystème AM/PM.</p>
+  </div>
+
+  <div class="competence__field trace-block">
+    <div class="competence__field-label">Trace</div>
+    <p><span class="trace-tag">Preuve</span>Exercices d’affectation des charges, cas pratiques AM/PM, supports de cours et notes de révision.</p>
+  </div>
+</div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ BLOC 5 ============ -->
+<section class="bloc" id="bloc-5">
+  <div class="container">
+    <header class="bloc__header">
+      <div class="bloc__num">05</div>
+      <div class="bloc__title-wrap">
+        <div class="bloc__eyebrow">Bloc de compétences</div>
+        <h2 class="bloc__title">Agir en situation professionnelle et de recherche</h2>
+      </div>
+    </header>
+
+    <!-- Compétence 5.1 -->
+    <article class="competence">
+      <div class="competence__head">
+        <h3 class="competence__name">Élaborer et réaliser des projets innovants en immobilier</h3>
+        <div class="niveau-stars">
+  <span class="star active">★</span>
+  <span class="star active">★</span>
+  <span class="star active">★</span>
+  <span class="star">★</span>
+  <span class="niveau-label">Autonome</span>
+</div>
+      </div>
+      <div class="competence__body competence__body--simple">
+  <div class="competence__field">
+    <div class="competence__field-label">Situation</div>
+    <p>Alternance AXESS : participation à des projets innovants autour de l’IA, des comptes-rendus automatisés, de l’extraction de données de devis et du déploiement de solutions SaaS.</p>
+  </div>
+
+  <div class="competence__field trace-block">
+    <div class="competence__field-label">Trace</div>
+    <p><span class="trace-tag">Preuve</span>RETEX projet IA, cahier des charges, tests utilisateurs, supports de déploiement, livrables INUIT et suivi des solutions SaaS.</p>
+  </div>
+</div>
+    </article>
+
+    <!-- Compétence 5.2 -->
+    <article class="competence">
+      <div class="competence__head">
+        <h3 class="competence__name">Problématiser, rechercher, exploiter, écrire et argumenter</h3>
+        <div class="niveau-stars">
+  <span class="star active">★</span>
+  <span class="star active">★</span>
+  <span class="star">★</span>
+  <span class="star">★</span>
+  <span class="niveau-label">Opérateur · exécute les consignes</span>
+</div>
+      </div>
+      <div class="competence__body competence__body--simple">
+  <div class="competence__field">
+    <div class="competence__field-label">Situation</div>
+    <p>Mémoire de M1 MIPI : construction d’une problématique autour de la BI et du pilotage de la performance immobilière, recherche de sources et préparation d’entretiens semi-directifs.</p>
+  </div>
+
+  <div class="competence__field trace-block">
+    <div class="competence__field-label">Trace</div>
+    <p><span class="trace-tag">Preuve</span>Problématique de mémoire, guide d’entretien, bibliographie Zotero, fiches de lecture et plan de mémoire.</p>
+  </div>
+</div>
+    </article>
+
+    <!-- Compétence 5.3 -->
+    <article class="competence">
+      <div class="competence__head">
+        <h3 class="competence__name">Collaborer, s'auto-évaluer, progresser</h3>
+        <div class="niveau-stars">
+  <span class="star active">★</span>
+  <span class="star active">★</span>
+  <span class="star active">★</span>
+  <span class="star">★</span>
+  <span class="niveau-label">Autonome</span>
+</div>
+      </div>
+      <div class="competence__body competence__body--simple">
+  <div class="competence__field">
+    <div class="competence__field-label">Situation</div>
+    <p>Travaux de groupe en M1, alternance AXESS et construction du portfolio : collaboration avec les équipes, prise en compte des retours, auto-évaluation et amélioration progressive des livrables.</p>
+  </div>
+
+  <div class="competence__field trace-block">
+    <div class="competence__field-label">Trace</div>
+    <p><span class="trace-tag">Preuve</span>Portfolio, retours tuteur, travaux de groupe, livrables de cours, comptes-rendus et améliorations successives des supports.</p>
+  </div>
+</div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__inner">
+      <div>
+        <h3>Francesc</h3>
+        <p>e-Portfolio · M1 MIPI · 2025-2026</p>
+      </div>
+      <div>
+        <h3>Formation</h3>
+        <p>Université Gustave Eiffel<br>Master Management et Ingénierie des Services<br>Parcours MIPI</p>
+      </div>
+      <div>
+        <h3>Alternance</h3>
+        <p>AXESS AXTOM Engineering<br>Solutions &amp; Services<br>Service Business Intelligence</p>
+      </div>
+    </div>
+    <div class="site-footer__credit">
+      Premier jet — document évolutif tout au long de la formation.
+    </div>
+  </div>
+</footer>
+
+<script>
+function showBloc(blocId) {
+
+  event.preventDefault();
+
+  const blocs = document.querySelectorAll('.bloc');
+
+  blocs.forEach(bloc => {
+    bloc.classList.remove('active');
+  });
+
+  const targetBloc = document.getElementById(blocId);
+
+  if(targetBloc) {
+
+    targetBloc.classList.add('active');
+
+    setTimeout(() => {
+
+      const headerHeight =
+        document.querySelector('.site-header').offsetHeight;
+
+      const blocPosition =
+        targetBloc.getBoundingClientRect().top + window.scrollY;
+
+      window.scrollTo({
+        top: blocPosition - headerHeight - 20,
+        behavior: 'smooth'
+      });
+
+    }, 50);
+  }
+}
+</script>
+
+</body>
+</html>
